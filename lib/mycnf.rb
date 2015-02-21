@@ -45,4 +45,27 @@ class MyCnf
     end
     result.chomp
   end
+
+  def self.compare(*cnf)
+    size = cnf.size
+    result = {}
+    cnf.each_with_index do |c, i|
+      result = _compare(c, size, i, result)
+    end
+    result
+  end
+
+
+  private
+
+  def self._compare(cnf, size, index, result)
+    cnf.each do |section, params|
+      result[section] ||= {}
+      params.each do |param, value|
+        result[section][param] ||= Array.new(size)
+        result[section][param][index] = value
+      end
+    end
+    result
+  end
 end
