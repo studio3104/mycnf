@@ -46,6 +46,20 @@ class MyCnf
     result.chomp
   end
 
+  def self.diff(*cnf)
+    compare = compare(*cnf)
+    result = {}
+    compare.each do |section, params|
+      params.each do |param, values|
+        if values.uniq.size != 1
+          result[section] ||= {}
+          result[section][param] = values
+        end
+      end
+    end
+    result
+  end
+
   def self.compare(*cnf)
     size = cnf.size
     result = {}
@@ -54,7 +68,6 @@ class MyCnf
     end
     result
   end
-
 
   private
 
