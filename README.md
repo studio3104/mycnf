@@ -1,4 +1,4 @@
-# mycnf
+# mycnf [![Build Status](https://travis-ci.org/studio3104/mycnf.svg)](https://travis-ci.org/studio3104/mycnf)
 
 parser of `my.cnf`
 
