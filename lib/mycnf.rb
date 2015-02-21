@@ -46,6 +46,11 @@ class MyCnf
     result.chomp
   end
 
+  def self.diff_files(*file_pathes)
+    cnfs = file_pathes.map { |path| parse(path) }
+    diff(*cnfs)
+  end
+
   def self.diff(*cnf)
     compare = compare(*cnf)
     result = {}
@@ -58,6 +63,11 @@ class MyCnf
       end
     end
     result
+  end
+
+  def self.compare_files(*file_pathes)
+    cnfs = file_pathes.map { |path| parse(path) }
+    compare(*cnfs)
   end
 
   def self.compare(*cnf)
