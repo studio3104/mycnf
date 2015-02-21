@@ -18,7 +18,6 @@ class MyCnf
       param, value = [$1.strip.to_sym, $2.strip]
 
       value = case value
-      when ''; nil
       when /^\d+$/; value.to_i
       when /^true$/i; true
       when /^false$/i; false
@@ -36,7 +35,7 @@ class MyCnf
     hash.each do |section, params|
       result << %Q[[#{section.to_s}]\n]
       params.each do |param, value|
-        if value.nil?
+        if value == ''
           result << %Q[#{param}\n]
         else
           result << %Q[#{param} = #{value}\n]
