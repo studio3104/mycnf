@@ -15,7 +15,8 @@ class MyCnf
 
       next if section.nil?
       next unless /^([^\=]+)\=?(.*)/ =~ line
-      param, value = [$1.strip.to_sym, $2.strip]
+      param, value = [ $1.strip, $2.strip ]
+      param = param.gsub('-', '_').to_sym
 
       value = case value
       when /^\d+$/; value.to_i
